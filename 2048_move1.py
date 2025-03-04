@@ -61,29 +61,33 @@ def draw_score(screen, score):
     # screen.blit(score_img, (370, 30))
 
 
-def show_game_over(screen):
+def show_game_over(screen,mm):
     font_size_big = 60
     font_size_small = 30
     font_color = (255, 255, 255)
     font_big = pygame.font.Font("QingNiaoHuaGuangJianMeiHei-2.ttf", font_size_big)
     font_small = pygame.font.Font("QingNiaoHuaGuangJianMeiHei-2.ttf", font_size_small)
     surface = screen.convert_alpha()
-    surface.fill((127, 255, 212, 2))
-    text = font_big.render('Game Over!', True, font_color)
+    surface.fill((0, 0, 0, 2))
+    text = font_big.render(f'{mm}', True, (0,0,0))
+    text_rect1 = text.get_rect()
+    text_rect1.centerx, text_rect1.centery = WIDTH / 2, HEIGHT / 2 - 50
+    surface.blit(text1, text_rect1)
+    text = font_big.render(f'Game Over!', True, (0,0,0))
     text_rect = text.get_rect()
     text_rect.centerx, text_rect.centery = WIDTH / 2, HEIGHT / 2 - 50
-    surface.blit(text, text_rect)
+    surface.blit(text, text_rect) 
     button_width, button_height = 100, 40
     button_start_x_left = WIDTH / 2 - button_width - 20
     button_start_x_right = WIDTH / 2 + 20
     button_start_y = HEIGHT / 2 - button_height / 2 + 20
     pygame.draw.rect(surface, (0, 255, 255), (button_start_x_left, button_start_y, button_width, button_height))
-    text_restart = font_small.render('Restart', True, font_color)
+    text_restart = font_small.render('Restart', True, (00,33,66))
     text_restart_rect = text_restart.get_rect()
     text_restart_rect.centerx, text_restart_rect.centery = button_start_x_left + button_width / 2, button_start_y + button_height / 2
     surface.blit(text_restart, text_restart_rect)
     pygame.draw.rect(surface, (0, 255, 255), (button_start_x_right, button_start_y, button_width, button_height))
-    text_quit = font_small.render('Quit', True, font_color)
+    text_quit = font_small.render('Quit', True, (00,33,66))
     text_quit_rect = text_quit.get_rect()
     text_quit_rect.centerx, text_quit_rect.centery = button_start_x_right + button_width / 2, button_start_y + button_height / 2
     surface.blit(text_quit, text_quit_rect)
@@ -397,10 +401,10 @@ def main():
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
     while True:
         # 运行一次游戏
-        run(screen)
+       mm = run(screen)
 
         # 显示游戏结束，是否重来
-        show_game_over(screen)
+        show_game_over(screen,mm)
 
 
 if __name__ == '__main__':
