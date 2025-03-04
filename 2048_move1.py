@@ -252,7 +252,7 @@ def draw_nums(screen, chess_nums_temp):
     显示棋盘上的数字
     """
     # 准备字体等
-    font_size = BLOCK_SIZE - 10
+    font_size = BLOCK_SIZE - 23
     font = pygame.font.Font("QingNiaoHuaGuangJianMeiHei-2.ttf", font_size)
     # 遍历数字
     for i, line in enumerate(chess_nums_temp):
