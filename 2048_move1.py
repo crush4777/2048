@@ -44,12 +44,12 @@ def get_score(chess_nums_temp):
     return reduce(sum_all, chess_nums_temp)
 
 
-def draw_score(screen, score):
+def draw_score(screen, score,rot):
     """
     显示分数
     """
     # 显示数字
-    font_size_big = 60
+    font_size_big = 30
     font_color = (0, 255, 255)
     font_big = pygame.font.Font("QingNiaoHuaGuangJianMeiHei-2.ttf", font_size_big)
     # score = font_big.render(str(), True, (255, 255, 0))
