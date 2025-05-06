@@ -1,3 +1,9 @@
+import os
+import tensorflow as tf
+import matplotlib
+import numpy as np
+matplotlib.use('TkAgg')
+
 def move_row(row):
     new_row = []
     prev = None
@@ -164,15 +170,42 @@ def analyze_moves(chess_nums):
             })
 
     if not valid_moves:
-        return "无有效移动"
+        return "No valid move"
 
     algo1 = max(valid_moves, key=lambda x: x['score'], default=None)
     algo2 = max(valid_moves, key=lambda x: x['empty'], default=None)
     algo3 = max(valid_moves, key=lambda x: x['eval'], default=None)
 
     result = [
-        f"贪心算法推荐:{algo1['direction']}\n",
-        f"最大空格算法推荐:{algo2['direction']}\n",
-        f"综合评估算法推荐:{algo3['direction']}",
+        f"Greedy: {algo1['direction']}\n",
+        f"Maximum: {algo2['direction']}\n",
+        f"Comprehensive: {algo3['direction']}",
     ]
     return algo1['direction'], algo2['direction'], algo3['direction'], result
+
+
+
+
+
+
+def rl_analyze_moves(chess_nums):
+    chess_nums = np.array(chess_nums).reshape(1, 4, 4, 1)
+    model = tf.keras.models.load_model(r'D:\2048V2\2048\RL\models\2048_model_final.h5',
+                                       custom_objects={'custom_loss': 'categorical_crossentropy'})
+    predictions = model.predict(chess_nums, verbose=0)[0]
+    print('model.predict(state, verbose=0)', model.predict(chess_nums, verbose=0))
+    print('predictions:', predictions)
+
+    moves = ['up', 'down', 'left', 'right']
+    move_probs = list(zip(moves, predictions))
+    move_probs.sort(key=lambda x: x[1], reverse=True)
+
+    # Try moves in order of confidence until a valid one is found
+    for move, prob in move_probs:
+        print('move, prob:', move, prob)
+            #return move, prob
+    move_probs_dict = dict(move_probs)
+    print('move_probs_dict:', move_probs_dict)
+    move_probs_dict = {key: round(float(value), 2) for key, value in move_probs_dict.items()}
+    print(move_probs_dict)
+    return move_probs_dict
