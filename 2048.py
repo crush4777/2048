@@ -20,10 +20,10 @@ from ai import rl_analyze_moves
 
 
 def get_theme(theme):
-    # 初始化默认背景颜色
+    
     bg_color = '#92877d'
 
-    # 定义不同主题对应的颜色设置
+    
     theme_colors = {
         'bright': {
             'bg_color': '#ffffff',  # 明亮主题使用白色背景
@@ -1516,7 +1516,7 @@ def run_double_player_game(screen, width, height, username, theme, difficulty, g
         #button_area_start_x, button_start_y, button_width, button_height, button_vertical_gap, flag, flag_1, flag_2
 
 
-        if flag_1 == 22 and flag_2 != 22:
+        if flag_1 == 22 and flag_2 != 22；
             print('123123kkkkkkkkkkkkk')
             print('draw_one_game_over(screen, score2, step2, width * 0.7, margin_size, block_size)', score1, step1,
                   width * 0.7)
@@ -1600,13 +1600,12 @@ if __name__ == "__main__":
                 # 这里假设 show_game_over 函数存在
 
                 if game_model == 'single':
-                    isGameRestart, width, height, theme = show_game_over(screen, score, WIDTH, HEIGHT, theme)
+                    isGameRestart, width, height, theme = show_game_start(screen, score, WIDTH, HEIGHT, theme)
 
             if game_model == 'double':
                 score, new_width, new_height, theme, difficulty, game_model, player = run_double_player_game(screen, WIDTH, HEIGHT, username, theme,difficulty, game_model)
-                WIDTH, HEIGHT = new_width, new_height  # 更新窗口宽度和高度
-
+                WIDTH, HEIGHT = new_width, new_height  
                 if game_model == 'double':
-                    isGameRestart, width, height, theme = show_double_game_over(screen, score, WIDTH, HEIGHT, theme, player)
+                    isGameRestart, width, height, theme = show_double_game_start(screen, score, WIDTH, HEIGHT, theme, player)
 
 
