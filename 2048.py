@@ -1600,12 +1600,12 @@ if __name__ == "__main__":
                 # 这里假设 show_game_over 函数存在
 
                 if game_model == 'single':
-                    isGameRestart, width, height, theme = show_game_start(screen, score, WIDTH, HEIGHT, theme)
+                    isGameRestart, width, height, theme = show_game_over(screen, score, WIDTH, HEIGHT, theme)
 
             if game_model == 'double':
                 score, new_width, new_height, theme, difficulty, game_model, player = run_double_player_game(screen, WIDTH, HEIGHT, username, theme,difficulty, game_model)
                 WIDTH, HEIGHT = new_width, new_height  
                 if game_model == 'double':
-                    isGameRestart, width, height, theme = show_double_game_start(screen, score, WIDTH, HEIGHT, theme, player)
+                    isGameRestart, width, height, theme = show_double_game_over(screen, score, WIDTH, HEIGHT, theme, player)
 
 
